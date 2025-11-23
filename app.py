@@ -25,7 +25,7 @@ def main():
 
     # --- GENERAZIONE DATI SIMULATI (B&O Style) ---
     np.random.seed(42)
-    dates = pd.date_range(start="2023-01-01", periods=12, freq="M")
+    dates = pd.date_range(start="2023-01-01", periods=12, freq="ME")
     sales = np.array([100, 120, 130, 150, 160, 180, 200, 210, 230, 250, 270, 300]) * 1000
     cogs = sales * 0.45 + np.random.normal(0, 5000, 12)  # 45% COGS
     opex = sales * 0.21 + 20000 # Costi fissi base + variabili
@@ -59,7 +59,7 @@ def main():
                 title="Struttura Costi (Fissi vs Variabili)",
                 color_discrete_sequence=['#EF553B', '#636EFA']
             )
-            st.plotly_chart(fig_pie, use_container_width=True)
+            st.plotly_chart(fig_pie, width='stretch')
 
         with col2:
             st.subheader("Tool #2: Variance Analysis")
@@ -109,14 +109,14 @@ def main():
             # Grafico Scatter + Trendline
             fig_reg = px.scatter(df, x='Sales', y='Total_Costs', trendline="ols",
                                 title="Analisi di Regressione: Forte relazione lineare")
-            st.plotly_chart(fig_reg, use_container_width=True)
+            st.plotly_chart(fig_reg, width='stretch')
             
         with tab2:
             st.subheader("Correlation Matrix")
             corr = df[['Sales', 'COGS', 'OpEx', 'Total_Costs']].corr()
             fig_corr = px.imshow(corr, text_auto=True, aspect="auto", color_continuous_scale='RdBu_r',
                                 title="Matrice di Correlazione (Heatmap)")
-            st.plotly_chart(fig_corr, use_container_width=True)
+            st.plotly_chart(fig_corr, width='stretch')
 
     # ==============================================================================
     # MODULO 3: PREDICTIVE ANALYTICS
@@ -152,7 +152,7 @@ def main():
                 fig_be.add_trace(go.Scatter(x=x_vals, y=cost_vals, name='Costi Totali', line=dict(color='red')))
                 fig_be.add_vline(x=bep_units, line_dash="dash", annotation_text="BEP")
                 
-                st.plotly_chart(fig_be, use_container_width=True)
+                st.plotly_chart(fig_be, width='stretch')
 
         st.markdown("---")
         st.subheader("Tool #10: Scenario & Sensitivity Analysis")
@@ -205,7 +205,7 @@ def main():
         fig_tree = px.bar(x=decisions, y=values, color=decisions, 
                         title="Confronto Decisionale (EMV)",
                         labels={'y': 'Expected Monetary Value ($)', 'x': 'Opzioni'})
-        st.plotly_chart(fig_tree, use_container_width=True)
+        st.plotly_chart(fig_tree, width='stretch')
         
         st.markdown("""
         **Prescrizione Automatica:**  
