@@ -14,6 +14,9 @@ st.markdown("Basato sul documento *15 Essential Cost Analytics Tools*")
 
 st.sidebar.header("Navigazione Moduli")
 
+#####################################################################################
+#####  MAIN
+#####################################################################################
 def main():
     module = st.sidebar.radio(
                                 "Scegli la Fase Analitica:",
